@@ -220,7 +220,7 @@ export const IssueView = observer(function IssueView(props: IIssueView) {
                     </div>
                   ) : peekMode === "modal" ? (
                     <div className="vertical-scrollbar flex h-full w-full overflow-auto">
-                      <div className="relative h-full w-full space-y-6 overflow-auto px-10 py-6">
+                      <div className="relative h-full w-full overflow-auto px-10 py-6">
                         <PeekOverviewIssueDetails
                           editorRef={editorRef}
                           workspaceSlug={workspaceSlug}
@@ -243,13 +243,15 @@ export const IssueView = observer(function IssueView(props: IIssueView) {
                           }
                         />
 
-                        <IssueDetailWidgets
-                          workspaceSlug={workspaceSlug}
-                          projectId={projectId}
-                          issueId={issueId}
-                          disabled={disabled || is_archived}
-                          issueServiceType={EIssueServiceType.ISSUES}
-                        />
+                        <div className="mt-6 border-t border-subtle/70 pt-6">
+                          <IssueDetailWidgets
+                            workspaceSlug={workspaceSlug}
+                            projectId={projectId}
+                            issueId={issueId}
+                            disabled={disabled || is_archived}
+                            issueServiceType={EIssueServiceType.ISSUES}
+                          />
+                        </div>
                       </div>
                       <div
                         className={`vertical-scrollbar scrollbar-sm h-full !w-[380px] flex-shrink-0 overflow-y-auto border-l border-subtle bg-canvas px-5 py-6 ${

@@ -148,7 +148,7 @@ export const PeekOverviewIssueDetails = observer(function PeekOverviewIssueDetai
         />
       </div>
 
-      {propertiesSlot && <div className="-mx-1 pt-1">{propertiesSlot}</div>}
+      {propertiesSlot && <div className="-mx-1 border-b border-subtle/70 pt-1 pb-4">{propertiesSlot}</div>}
 
       <DescriptionInput
         issueSequenceId={issue.sequence_id}
