@@ -46,11 +46,25 @@ type Props = {
   isArchived: boolean;
   isSubmitting: TNameDescriptionLoader;
   setIsSubmitting: (value: TNameDescriptionLoader) => void;
+  /** Optional content rendered between the title and description (e.g. properties grid in modal mode). */
+  propertiesSlot?: React.ReactNode;
+  /** Emphasizes the title block with a divider beneath it (used in centered modal layout). */
+  emphasizeTitle?: boolean;
 };
 
 export const PeekOverviewIssueDetails = observer(function PeekOverviewIssueDetails(props: Props) {
-  const { editorRef, workspaceSlug, issueId, issueOperations, disabled, isArchived, isSubmitting, setIsSubmitting } =
-    props;
+  const {
+    editorRef,
+    workspaceSlug,
+    issueId,
+    issueOperations,
+    disabled,
+    isArchived,
+    isSubmitting,
+    setIsSubmitting,
+    propertiesSlot,
+    emphasizeTitle = false,
+  } = props;
   // store hooks
   const { data: currentUser } = useUser();
   const {
@@ -107,29 +121,34 @@ export const PeekOverviewIssueDetails = observer(function PeekOverviewIssueDetai
           issueOperations={issueOperations}
         />
       )}
-      <div className="flex items-center justify-between gap-2">
-        <IssueTypeSwitcher issueId={issueId} disabled={isArchived || disabled} />
-        {duplicateIssues?.length > 0 && (
-          <DeDupeIssuePopoverRoot
-            workspaceSlug={workspaceSlug}
-            projectId={issue.project_id}
-            rootIssueId={issueId}
-            issues={duplicateIssues}
-            issueOperations={issueOperations}
-          />
-        )}
+      <div className={emphasizeTitle ? "border-b border-subtle/70 pb-4" : ""}>
+        <div className="flex items-center justify-between gap-2">
+          <IssueTypeSwitcher issueId={issueId} disabled={isArchived || disabled} />
+          {duplicateIssues?.length > 0 && (
+            <DeDupeIssuePopoverRoot
+              workspaceSlug={workspaceSlug}
+              projectId={issue.project_id}
+              rootIssueId={issueId}
+              issues={duplicateIssues}
+              issueOperations={issueOperations}
+            />
+          )}
+        </div>
+        <IssueTitleInput
+          workspaceSlug={workspaceSlug}
+          projectId={issue.project_id}
+          issueId={issue.id}
+          isSubmitting={isSubmitting}
+          setIsSubmitting={(value) => setIsSubmitting(value)}
+          issueOperations={issueOperations}
+          disabled={disabled || isArchived}
+          value={issue.name}
+          containerClassName="-ml-3"
+          className={emphasizeTitle ? "text-2xl font-semibold tracking-tight" : undefined}
+        />
       </div>
-      <IssueTitleInput
-        workspaceSlug={workspaceSlug}
-        projectId={issue.project_id}
-        issueId={issue.id}
-        isSubmitting={isSubmitting}
-        setIsSubmitting={(value) => setIsSubmitting(value)}
-        issueOperations={issueOperations}
-        disabled={disabled || isArchived}
-        value={issue.name}
-        containerClassName="-ml-3"
-      />
+
+      {propertiesSlot && <div className="-mx-1 pt-1">{propertiesSlot}</div>}
 
       <DescriptionInput
         issueSequenceId={issue.sequence_id}
@@ -172,17 +191,13 @@ export const PeekOverviewIssueDetails = observer(function PeekOverviewIssueDetai
               isRestoreDisabled: disabled || isArchived,
             }}
             fetchHandlers={{
-              listDescriptionVersions: (issueId) =>
-                workItemVersionService.listDescriptionVersions(
-                  workspaceSlug,
-                  issue.project_id?.toString() ?? "",
-                  issueId
-                ),
-              retrieveDescriptionVersion: (issueId, versionId) =>
+              listDescriptionVersions: (id) =>
+                workItemVersionService.listDescriptionVersions(workspaceSlug, issue.project_id?.toString() ?? "", id),
+              retrieveDescriptionVersion: (id, versionId) =>
                 workItemVersionService.retrieveDescriptionVersion(
                   workspaceSlug,
                   issue.project_id?.toString() ?? "",
-                  issueId,
+                  id,
                   versionId
                 ),
             }}

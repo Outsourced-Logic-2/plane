@@ -231,14 +231,16 @@ export const IssueView = observer(function IssueView(props: IIssueView) {
                           isArchived={is_archived}
                           isSubmitting={isSubmitting}
                           setIsSubmitting={(value) => setIsSubmitting(value)}
-                        />
-
-                        <PeekOverviewProperties
-                          workspaceSlug={workspaceSlug}
-                          projectId={projectId}
-                          issueId={issueId}
-                          issueOperations={issueOperations}
-                          disabled={disabled || is_archived}
+                          emphasizeTitle
+                          propertiesSlot={
+                            <PeekOverviewProperties
+                              workspaceSlug={workspaceSlug}
+                              projectId={projectId}
+                              issueId={issueId}
+                              issueOperations={issueOperations}
+                              disabled={disabled || is_archived}
+                            />
+                          }
                         />
 
                         <IssueDetailWidgets
