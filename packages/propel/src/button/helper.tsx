@@ -27,7 +27,7 @@ export const buttonVariants = cva(
         link: "px-0 text-link-primary underline hover:text-link-primary-hover focus:text-link-primary-hover active:text-link-primary-hover disabled:text-disabled",
       },
       size: {
-        sm: "h-5 rounded-sm px-1.5 text-caption-md-medium",
+        sm: "h-5 rounded-md px-1.5 text-caption-md-medium",
         base: "h-6 rounded-md px-2 text-body-xs-medium",
         lg: "h-7 rounded-md px-2 text-body-xs-medium",
         xl: "h-8 rounded-md px-2 text-body-sm-medium",

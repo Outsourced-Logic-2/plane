@@ -55,7 +55,7 @@ export const SidebarWrapper = observer(function SidebarWrapper(props: TSidebarWr
           {/* Workspace switcher and settings */}
 
           <div className="flex items-center justify-between gap-2 px-2">
-            <span className="pt-1 text-16 font-medium text-primary">{title}</span>
+            <span className="text-15 pt-1 font-semibold tracking-tight text-primary">{title}</span>
             <div className="flex items-center gap-2">
               {title === "Projects" && (
                 <IconButton
@@ -82,7 +82,7 @@ export const SidebarWrapper = observer(function SidebarWrapper(props: TSidebarWr
           {children}
         </ScrollArea>
         {/* Help Section */}
-        <div className="flex h-12 items-center justify-between border-t border-subtle bg-surface-1 p-3">
+        <div className="flex h-11 items-center justify-between border-t border-subtle/60 bg-canvas px-3 py-2">
           <WorkspaceEditionBadge />
           {/* TODO: To be checked if we need this */}
           {/* <div className="flex items-center gap-2">

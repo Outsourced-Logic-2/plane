@@ -219,13 +219,13 @@
     --scrollbar-thumb-hover: var(--alpha-black-400);
     --scrollbar-thumb-active: var(--alpha-black-500);
     /* Background colors */
-    --bg-canvas: var(--neutral-300);
+    --bg-canvas: var(--neutral-200);
     --bg-surface-1: var(--neutral-white);
     --bg-surface-2: var(--neutral-100);
-    --bg-layer-1: var(--neutral-200);
-    --bg-layer-1-hover: var(--neutral-300);
-    --bg-layer-1-active: var(--neutral-400);
-    --bg-layer-1-selected: var(--neutral-400);
+    --bg-layer-1: var(--neutral-100);
+    --bg-layer-1-hover: var(--neutral-200);
+    --bg-layer-1-active: var(--neutral-300);
+    --bg-layer-1-selected: var(--neutral-300);
     --bg-layer-2: var(--neutral-white);
     --bg-layer-2-hover: var(--neutral-100);
     --bg-layer-2-active: var(--neutral-200);
@@ -265,10 +265,10 @@
     --bg-backdrop: var(--alpha-black-500);
     --bg-inverse: var(--alpha-black-1000);
     /* Border colors */
-    --border-subtle: var(--neutral-400);
-    --border-subtle-1: var(--neutral-500);
-    --border-strong: var(--neutral-600);
-    --border-strong-1: var(--neutral-700);
+    --border-subtle: var(--neutral-300);
+    --border-subtle-1: var(--neutral-400);
+    --border-strong: var(--neutral-500);
+    --border-strong-1: var(--neutral-600);
     --border-inverse: var(--neutral-white);
     --border-disabled: var(--neutral-300);
     --border-accent-strong: var(--brand-default);
